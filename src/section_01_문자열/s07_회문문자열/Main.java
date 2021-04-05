@@ -5,29 +5,15 @@ import java.util.Scanner;
 public class Main {
 
     public String solution(String s) {
-        String str1 = s.substring(0, s.length() / 2);
-        String str2;
+        s = s.toUpperCase();
 
-        if (s.length() % 2 == 0) {
-            str2 = s.substring(s.length() / 2);
-        } else {
-            str2 = s.substring(s.length() / 2 + 1);
+        for (int i = 0; i < s.length() / 2; i++) {
+            if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {
+                return "NO";
+            }
         }
 
-        char[] chars = str2.toCharArray();
-        int lt = 0;
-        int rt = chars.length - 1;
-
-        while (lt < rt) {
-            char temp = chars[lt];
-            chars[lt] = chars[rt];
-            chars[rt] = temp;
-            lt++;
-            rt--;
-        }
-
-        return str1.equalsIgnoreCase(String.valueOf(chars)) ? "YES" : "NO";
-//        return str1.equalsIgnoreCase(new StringBuilder(str2).reverse().toString()) ? "YES" : "NO";
+        return "YES";
     }
 
     public static void main(String... args) {
