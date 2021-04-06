@@ -6,38 +6,18 @@ public class Main {
 
     public String solution(String s) {
         String answer = "";
+        s += " ";
         int p = 1;
-        char temp = s.charAt(0);
-
-        for (int i = 1; i < s.length(); i++) {
-            if (s.charAt(i) == temp) {
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == s.charAt(i + 1)) {
                 p++;
             } else {
-                if (p == 1) {
-                    answer += temp;
-                } else {
-                    answer += temp + String.valueOf(p);
+                answer += s.charAt(i);
+                if (p != 1) {
+                    answer += String.valueOf(p);
                 }
                 p = 1;
             }
-
-            if (i == s.length() - 1) {
-                if (s.charAt(i) == temp) {
-                    if (p == 1) {
-                        answer += temp;
-                    } else {
-                        answer += temp + String.valueOf(p);
-                    }
-                } else {
-                    if (p == 1) {
-                        answer += s.charAt(i);
-                    } else {
-                        answer += s.charAt(i) + String.valueOf(p);
-                    }
-                }
-            }
-
-            temp = s.charAt(i);
         }
 
         return answer;
