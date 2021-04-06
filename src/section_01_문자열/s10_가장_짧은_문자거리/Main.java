@@ -1,33 +1,39 @@
 package section_01_문자열.s10_가장_짧은_문자거리;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
     public String solution(String s, char t) {
-        String answer = "";
+        int[] temp = new int[s.length()];
         char[] chars = s.toCharArray();
-        ArrayList<Integer> integers = new ArrayList<>();
+        int p = 100;
 
         for (int i = 0; i < chars.length; i++) {
             if (chars[i] == t) {
-                integers.add(i);
+                p = 0;
+            } else {
+                p++;
+            }
+            temp[i] = p;
+        }
+
+        p = temp[chars.length - 1];
+
+        for (int i = chars.length - 1; i >= 0; i--) {
+            if (chars[i] == t) {
+                p = 0;
+            } else {
+                p++;
+            }
+
+            if (temp[i] > p) {
+                temp[i] = p;
             }
         }
 
-        for (int i = 0; i < chars.length; i++) {
-            int min = Integer.MAX_VALUE;
-            for (int c : integers) {
-                int d = Math.abs(i - c);
-                if (d < min) {
-                    min = d;
-                }
-            }
-            answer += min + " ";
-        }
-
-        return answer.trim();
+        return Arrays.toString(temp).replaceAll("[^0-9 ]","");
     }
 
     public static void main(String[] args) {
