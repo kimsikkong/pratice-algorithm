@@ -4,28 +4,38 @@ import java.util.Scanner;
 
 public class Main {
 
+    public boolean isPrimeNumber(int n) {
+        if (n == 1) {
+            return false;
+        }
+
+        for (int i = 2; i < n; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public String solution(int n, int[] arr) {
-        int MAX = 100_000;
-        int[] prime_numbers = new int[MAX + 1];
-        prime_numbers[0] = 2;
-        prime_numbers[1] = 2;
-
-        for (int i = 2; i < MAX; i++) {
-            if (prime_numbers[i] == 0 || prime_numbers[i] == 1) {
-                for (int j = i; j <= MAX; j = j + i) {
-                    prime_numbers[j] = ++prime_numbers[j];
-                }
-            }
-        }
-
         String answer = "";
-        for (int i = 0; i < n; i++) {
-            int k = Integer.parseInt(new StringBuilder(String.valueOf(arr[i])).reverse().toString());
-            if (prime_numbers[k] == 1) {
-                answer += k + " ";
-            }
-        }
 
+        for (int i = 0; i < n; i++) {
+            int res = 0;
+            int temp = arr[i];
+
+            while (temp > 0) {
+                int t = temp % 10;
+                res = res * 10 + t;
+                temp = temp / 10;
+            }
+
+            if (isPrimeNumber(res)) {
+                answer += res + " ";
+            }
+
+        }
         return answer.trim();
     }
 
