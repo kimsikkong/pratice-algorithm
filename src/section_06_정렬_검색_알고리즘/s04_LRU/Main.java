@@ -12,11 +12,8 @@ public class Main {
         }
 
         for (int i = 0; i < n; i++) {
-            if (stack.contains(arr[i])) {
-                int idx = stack.indexOf(arr[i]);
-                stack.removeElementAt(idx);
-            }
-
+            int idx = stack.indexOf(arr[i]);
+            if (-1 != idx) stack.removeElementAt(idx);
             stack.push(arr[i]);
             if (stack.size() == s + 1) stack.removeElementAt(0);
         }
