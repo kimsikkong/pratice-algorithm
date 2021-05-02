@@ -1,30 +1,20 @@
 package section_06_정렬_검색_알고리즘.s06_장난꾸러기;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
-    public void solution(int n, int[] arr) {
-        int a = 0;
-        int b = 0;
-        for (int i = 0; i < n - 1; i++) {
-            if (arr[i] > arr[i + 1]) {
-                a = i;
-                for (int j = i - 1; j >= 0; j--) {
-                    if (arr[j] == arr[i]) a = j;
-                    else break;
-                }
-                break;
-            }
+    public ArrayList<Integer> solution(int n, int[] arr) {
+        ArrayList<Integer> list = new ArrayList<>();
+        int[] temp = arr.clone();
+        Arrays.sort(temp);
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != temp[i]) list.add(i + 1);
         }
 
-        for (int i = 1; i < n; i++) {
-            if (i != a + 1 && arr[i] < arr[i - 1]) b = i;
-        }
-
-        if (b == 0) b = a + 1;
-
-        System.out.println((a + 1) + " " + (b + 1));
+        return list;
     }
 
     public static void main(String[] args) {
@@ -36,6 +26,8 @@ public class Main {
         }
 
         Main T = new Main();
-        T.solution(n, arr);
+        for (int x : T.solution(n, arr)) {
+            System.out.print(x + " ");
+        }
     }
 }
