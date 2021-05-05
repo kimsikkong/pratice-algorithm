@@ -1,4 +1,4 @@
-package section_06_정렬_검색_알고리즘.마구간_정하기;
+package section_06_정렬_검색_알고리즘.s10_마구간_정하기;
 
 import java.util.Arrays;
 import java.util.Scanner;
