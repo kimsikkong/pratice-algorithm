@@ -1,4 +1,4 @@
-package section_07_DFS_BFS.s05_이진트리_순회;
+package section_07_DFS_BFS.s05_이진트리_순회_DFS;
 
 class Node {
 
