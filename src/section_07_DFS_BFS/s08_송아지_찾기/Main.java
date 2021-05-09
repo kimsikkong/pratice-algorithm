@@ -3,51 +3,36 @@ package section_07_DFS_BFS.s08_송아지_찾기;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-class Node {
-
-    public Node lt;
-    public Node rt;
-    public int val;
-
-    public Node(int val) {
-        this.val = val;
-    }
-}
 
 public class Main {
 
-    public Node root;
+    public int[] dis = {-1, 1, 5};
+    public int[] ch = new int[10001];
 
-    public int solution(int S, int E) {
-        this.root = new Node(S);
-        return this.BFS(E);
-    }
-
-    public int BFS(int E) {
-        LinkedList<Node> Q = new LinkedList<>();
-        Q.offer(this.root);
+    public int BFS(int S, int E) {
+        LinkedList<Integer> Q = new LinkedList<>();
+        ch[S] = 1;
+        Q.offer(S);
         int L = 0;
-        int k = -1;
 
-        while (k != E) {
+        while (!Q.isEmpty()) {
             int len = Q.size();
             for (int i = 0; i < len; i++) {
-                Node c = Q.poll();
-                k = c.val;
-                if (k == E) return L;
-                else if (k > E) return L + (k - E);
-                else {
-                    if (E - k >= 3) c.rt = new Node(k + 5);
-                    else c.lt = new Node(k + 1);
+                int k  = Q.poll();
+                for (int di : dis) {
+                    int nx = k + di;
+                    if (nx == E) return L + 1;
+                    if (nx >= 1 && nx <= 10000 && ch[nx] != 1) {
+                        Q.offer(nx);
+                        ch[nx] = 1;
+                    }
                 }
-                if (c.lt != null) Q.offer(c.lt);
-                if (c.rt != null) Q.offer(c.rt);
             }
 
             L++;
         }
 
-        return L - 1;
+        return -1;
     }
 
     public static void main(String[] args) {
@@ -55,7 +40,7 @@ public class Main {
         int S = scanner.nextInt();
         int E = scanner.nextInt();
         Main T = new Main();
-        System.out.println(T.solution(S, E));
+        System.out.println(T.BFS(S, E));
     }
 
 }
