@@ -13,6 +13,7 @@ public class Main {
     public static boolean match = false;
 
     public void DFS(int idx) {
+        if (match) return;
         if (idx == n) {
             Set<Integer> keys = chk.keySet();
             int matchSum = 0;
