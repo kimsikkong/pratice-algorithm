@@ -12,7 +12,6 @@ public class Main {
         if (time > m ) return;
         else if (idx == n) answer = Math.max(answer, sum);
         else {
-            answer = Math.max(answer, sum);
             DFS(idx + 1, sum + arr[idx][0], time + arr[idx][1], arr);
             DFS(idx + 1, sum, time, arr);
         }
