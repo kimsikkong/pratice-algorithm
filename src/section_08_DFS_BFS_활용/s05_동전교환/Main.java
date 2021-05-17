@@ -17,6 +17,7 @@ public class Main {
             int len = Q.size();
             for (int i = 0; i < len; i++) {
                 int k = Q.poll();
+                if (k == m) return L;
                 for (int j = 0; j < n; j++) {
                     int x = arr[j] + k;
                     if (x == m) return L + 1;
@@ -30,7 +31,7 @@ public class Main {
             L++;
         }
 
-        return -1;
+        return Integer.MAX_VALUE;
     }
 
     public static void main(String[] args) {
