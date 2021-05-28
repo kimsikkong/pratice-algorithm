@@ -8,7 +8,7 @@ public class Main {
     public static final int HEIGHT = 7;
     public static int[] dx = {-1, 0, 1, 0};
     public static int[] dy = {0, 1, 0, -1};
-    public static int[][] board = new int[WIDTH + 2][HEIGHT + 2];
+    public static int[][] board = new int[WIDTH + 1][HEIGHT + 1];
     public static int answer = 0;
 
     public void DFS(int x, int y) {
@@ -20,7 +20,7 @@ public class Main {
                 int b = y + dy[i];
                 if (a == 0 || b == 0 || a == WIDTH + 1 || b == HEIGHT + 1) continue;
                 if (board[a][b] == 0) {
-                    board[x][y] = 1;
+                    board[x][y] = 2;
                     DFS(a, b);
                     board[x][y] = 0;
                 }
@@ -37,6 +37,7 @@ public class Main {
         }
 
         Main T = new Main();
+        board[1][1] = 1;
         T.DFS(1, 1);
         System.out.print(answer);
     }
