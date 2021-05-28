@@ -18,9 +18,8 @@ public class Main {
             for (int i = 0; i < dx.length; i++) {
                 int a = x + dx[i];
                 int b = y + dy[i];
-                if (a == 0 || b == 0 || a == WIDTH + 1 || b == HEIGHT + 1) continue;
-                if (board[a][b] == 0) {
-                    board[x][y] = 2;
+                if (a >= 1 && a <= 7 && b >= 1 && b <= 7 && board[a][b] == 0) {
+                    board[x][y] = 1;
                     DFS(a, b);
                     board[x][y] = 0;
                 }
