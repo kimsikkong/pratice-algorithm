@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Main {
 
-    static class Person implements Comparable {
+    static class Person implements Comparable<Person> {
         public int h;
         public int w;
 
@@ -14,9 +14,8 @@ public class Main {
         }
 
         @Override
-        public int compareTo(Object o) {
-            Person p = (Person) o;
-            return p.h - this.h;
+        public int compareTo(Person o) {
+            return o.h - this.h;
         }
     }
 
